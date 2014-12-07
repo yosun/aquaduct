@@ -112,7 +112,7 @@ function mss($txt){
 }
 
 function mquery($query){global $c0nn;
-	mysql_query($query,$c0nn) or die ( mail('yosofun@gmail.com','OSLborked @ called by '.$_SERVER['SCRIPT_NAME'], ' occurs at '.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].' from '.$_SERVER['REMOTE_ADDR'].' at '.gethostbyaddr($_SERVER['REMOTE_ADDR']).' ('.$_SERVER['HTTP_USER_AGENT'].")\n\n".serialize(debug_backtrace())."\n\n".mysql_error($c0nn)) );
+	mysql_query($query,$c0nn) or die (  ' occurs at '.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].' from '.$_SERVER['REMOTE_ADDR'].' at '.gethostbyaddr($_SERVER['REMOTE_ADDR']).' ('.$_SERVER['HTTP_USER_AGENT'].")\n\n".serialize(debug_backtrace())."\n\n".mysql_error($c0nn) );
 }
 /*
 function mailerror(){
