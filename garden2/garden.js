@@ -157,7 +157,7 @@ function handleRotate(event) {
     var angle = current.data.angle;
 	angle += 0.0001;
 
-	angle = vel;
+	//angle = vel;
 //	current.data.angle = (angle)%15;
 current.data.angle = angle;
 	current.rotate(angle);
