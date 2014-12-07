@@ -7,10 +7,10 @@ function Furniture (type, size, color) {
 
 var furnitureTypes = [
   	new Furniture('armchair', new Size(50, 50), '#808000'),
-	new Furniture('couch', new Size(50, 100), '#800080'),
-	new Furniture('bed', new Size(75, 125), '#008080'),
-	new Furniture('chair', new Size(25, 25), '#008000'),
-	new Furniture('table', new Size(100, 75), '#800000'),
+	new Furniture('BlackLeatherChair', new Size(50, 50), '#800080'),
+	new Furniture('LeatherChair', new Size(50, 50), '#008080'),
+	new Furniture('Lounger', new Size(50, 50), '#008000'),
+	new Furniture('UpholsteredChair', new Size(50, 50), '#800000'),
 ];
 
 
@@ -106,10 +106,12 @@ function instantiate(furniture, position) {
 	objectID = generateID();
 	//alert(objectID);
 
-	var rectangle = new Rectangle(position, size);
+/*	var rectangle = new Rectangle(position, size);
 	var sprite = new Path.Rectangle(rectangle, 4);
 	sprite.strokeColor = "black";
 	sprite.fillColor = color;
+	*/
+	var sprite = new Raster('img/' + type + '_Sprite.png', position);
 
 	sprite.data.id = objectID;
 	
@@ -477,6 +479,9 @@ function onMouseDrag(event) {
 			*/
 			//path.position += event.delta;
 			
+		}
+		else {
+			path.position += event.delta;
 		}
 	}
 	else if (line) {
