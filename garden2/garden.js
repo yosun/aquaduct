@@ -340,18 +340,46 @@ function updateData(object) {
 function onMouseUp(event) {
 	if (path) {
 		if (path.data.wall) {
+			if (connectedPieces) {
+				for (var i = 0; i < connectedPieces.length; i++) {
+					var piece = connectedPieces[i];
+					if (piece.data.connector) {
+						piece.position = snap(piece.position);
+					}
+					if (piece.data.wall) {
+						var seg = piece.firstSegment.point;
+						var newSeg = snap(seg);
+						var diff = newSeg-seg;
+						piece.position += diff;
+						piece.data.x = seg.x;
+						piece.data.y = seg.y;
+						
+						
+			
+						updateData(piece);
+					}
+				
+				}
+			}
+			path = null;
+			connectedPieces = null;
+			
+			/*
 			var seg = path.firstSegment.point;
 			var newSeg = snap(seg);
 			var diff = newSeg-seg;
 			path.position += diff;
 			path.data.x = seg.x;
 			path.data.y = seg.y;
+			*/
+			
+			
 //			var s2 = path.lastSegment.point;
 //			var correction = (s1-s2)/(gridInterval)%2;
 		//	alert(correction);
 //			path.position -= correction*gridInterval/2;
 		}
-		else if (path.data.cluster) {
+	/*	else if (path.data.cluster) {
 			var child = null;
 			for (var i = 0; i < path.children.length; i++) {
 				child = path.children[i];
@@ -366,15 +394,18 @@ function onMouseUp(event) {
 			path.position += adjust;
 			path.remove();
 		}
+		*/
 		else {
 
-			path.position = snap(path.position, path);
+			path.position = snap(path.position);
 			path.data.x = path.position.x;
 			path.data.y = path.position.y;
+			
+			updateData(path);
+			path = null;
 		}
-		updateData(path);
-		path = null;
-	}
+	}	
+	
 	else if (line) {
 		var s1 = line.firstSegment.point;
 		var s2 = line.lastSegment.point;
@@ -422,8 +453,14 @@ function dfs(root) {
 
 function onMouseDrag(event) {
 	if (path) {
-		if (path.data.wall || path.data.cluster) {
-			path.position += event.delta;
+		if (path.data.wall) { // || path.data.cluster) {
+			if (connectedPieces) {
+				for (var i = 0; i < connectedPieces.length; i++) {
+					var piece = connectedPieces[i];
+					piece.position += event.delta;
+				}
+			}
+		
 		//	var components = dfs(path);
 			//console.log(components);
 			
