@@ -155,10 +155,11 @@ current = null;
 wallGraph = {};
 gridpointRadius = 15;
 connectWalls = null;
-connect
+connectedPieces = null;
 function onMouseDown(event) {
 	connectWalls = [];
 	start = path = line = null;
+	connectedPieces = null;
 	nearest = snap(event.point);
 	connector = false;
 	if (nearest.isClose(event.point, gridpointRadius) && gardenBounds.contains(event.point)) {
@@ -204,18 +205,23 @@ function onMouseDown(event) {
 				}
 				else {
 			
-					var connectedPieces = dfs(result);
+					connectedPieces = dfs(result);
 //					result.data.group = connectedPieces;
 //					path = result;
 					console.log('cluster:  .. ' + connectedPieces);
-			  	  	if (connectedPieces.length > 1) {
+			  	  	/*
+					if (connectedPieces.length > 1) {
 						var group = new Group(connectedPieces);
 						path = group;
 						path.data.cluster = true;
 					}
+					
 					else {
 						path = result;
 					}
+					*/
+					path = result;
+					
 				}
 			}
 			else
@@ -254,6 +260,10 @@ function onMouseDown(event) {
 			line.data.movable = true;
 			line.strokeColor = 'black';
 			line.strokeWidth = 8;
+			line.x = start.point.x;
+			line.y = start.point.y;
+			line.dx = 0;
+			line.dy = 0;
 			line.add(start);
 			line.selectable = true;
 			idMap[line.id] = line;
