@@ -53,7 +53,7 @@ function displaySelectorBar() {
 	var bounds = new Rectangle(new Point(20, 20), new Size(200, view.viewSize.height - 60));
 	var path = new Path.Rectangle(bounds);
 	path.strokeColor = "black";
-	path.fillColor = "#333333";
+	path.fillColor = "#666666";
 	
 	var y = 100;
 	var x = 120;
@@ -89,7 +89,7 @@ function displaySelector(selection, x, y) {
 	icon.data.selector = true;
 	icon.data.furniture = selection;
 	icon.data.position = new Point(x, y);
-	icon.scale(0.2);
+	icon.scale(0.3);
 
 	
 	circle.data.selector = true;
