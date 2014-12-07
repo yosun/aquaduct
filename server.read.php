@@ -2,6 +2,9 @@
 
 require_once('_conn.php');
 
+if(!isset($_REQUEST['lasttime']))die('lasttime');
+$lasttime=$_REQUEST['lasttime'];
+
 $query = 'SELECT * FROM iodump WHERE timestamp>'.$lasttime;
 
 mysql_query($query);
@@ -10,8 +13,11 @@ $result = mysql_query($query);
 
 $rows = array();
 while($row = mysql_fetch_assoc($result)){
-    $rows[] = new array($row['timestamp'],$row['jsondump']);
+    $rows[] = $row['jsondump'];
+    $timestamp = $row['timestamp'];
 }
 
-$json = json_encode($rows); 
+$json['timestamp'] = $timestamp;
+$json['data'] = ($rows); 
 
+echo stripslashes(json_encode($json));
