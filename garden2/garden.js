@@ -122,6 +122,7 @@ function instantiate(furniture, position) {
 	sprite.data.wall = false;
 	sprite.data.movable = true;
 	idMap[sprite.id] = sprite;
+	sprite.scale(0.2);
 	
 	var canvas = document.getElementById('garden');
 	var mc = new Hammer.Manager(canvas);
