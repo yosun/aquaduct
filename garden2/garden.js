@@ -291,7 +291,7 @@ function disconnect(connector) {
 }
 
 function updateData(object) {
-	var url = "http://localhost/index.php";
+	var url = "http://localhost/bss/aquaduct/server.read.php";
 	var data = object.data;
 	//data['x'] = object.position.x;
 //	data['y'] = object.position.y;
