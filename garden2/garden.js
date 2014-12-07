@@ -125,12 +125,11 @@ function instantiate(furniture, position) {
 
 	mc.on("rotate", handleRotate);
 
-	alert('moo');	
 }
 
 function handleRotate(event) {
-	var angle = event.rotation;
-	current.data.angle = angle;
+	var angle = event.rotation / 100;
+	current.data.angle = (angle)%15;
 	current.rotate(angle);
 }
 
