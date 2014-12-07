@@ -72,14 +72,21 @@ function displaySelector(selection, x, y) {
 		fillColor: '#C0C0C0'
 	});
 	var iconRadius = 20;
+/*
 	var rectangle = new Rectangle(new Point(x-iconRadius, y-iconRadius),
 			new Size(iconRadius*2, iconRadius*2));
 	var icon = new Shape.Rectangle(rectangle);
 	icon.rotate(45);
 	icon.fillColor = selection.color;
+*/	
+	var type = selection.type;
+	var icon = new Raster('img/' + type + '_Icon.png', new Point(x, y));
+	
 	icon.data.selector = true;
 	icon.data.furniture = selection;
 	icon.data.position = new Point(x, y);
+	icon.scale(0.2);
+	
 	circle.data.selector = true;
 	circle.data.furniture = selection;
 	circle.data.position = new Point(x, y);
