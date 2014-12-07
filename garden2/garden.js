@@ -151,16 +151,17 @@ function instantiate(furniture, position) {
 }
 
 function handleRotate(event) {
-	var vel = event.angle/400;
+//	var vel = event.angle/400;
 	
 //	var angle = event.angle / 400;
     var angle = current.data.angle;
-	angle += 0.0001*vel;
-
+	//angle += 0.0001*vel;
+	angle = event.angle/400;
 	//angle = vel;
 //	current.data.angle = (angle)%15;
-current.data.angle = angle;
-	current.rotate(angle);
+	current.rotate(angle-current.data.angle);
+	current.data.angle = angle;
+	
 }
 
 
