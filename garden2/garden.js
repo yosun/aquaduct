@@ -33,10 +33,11 @@ function displayGarden() {
 	var y2 = y1 + height;
 	gardenBounds = new Rectangle(new Point(x1, y1), new Size(width, height));
     var path = new Path.Rectangle(gardenBounds);
-    path.fillColor = '#1B3867';
+    path.fillColor = '#CCCCFF';
 	path.strokeColor = 'white';
 	path.strokeWidth = 8;
-	var lineColor = '#CCDAE8';
+//	var lineColor = '#CCDAE8';
+var lineColor = 'white';
 	path.data.garden = true;
 	for (var i = x1+gridInterval; i < x2; i += gridInterval) {
 		var gridLine = new Path.Line(new Point(i, y1), new Point(i, y2));
