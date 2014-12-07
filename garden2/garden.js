@@ -33,8 +33,9 @@ function displayGarden() {
 	var y2 = y1 + height;
 	gardenBounds = new Rectangle(new Point(x1, y1), new Size(width, height));
     var path = new Path.Rectangle(gardenBounds);
-    path.fillColor = '#319DD4';
-	path.strokeColor = 'black';
+    path.fillColor = '#1B3867';
+	path.strokeColor = 'white';
+	path.strokeWidth = 8;
 	var lineColor = '#CCDAE8';
 	path.data.garden = true;
 	for (var i = x1+gridInterval; i < x2; i += gridInterval) {
@@ -52,8 +53,9 @@ function displayGarden() {
 function displaySelectorBar() {
 	var bounds = new Rectangle(new Point(20, 20), new Size(200, view.viewSize.height - 60));
 	var path = new Path.Rectangle(bounds);
-	path.strokeColor = "black";
-	path.fillColor = "#666666";
+	path.strokeColor = "white";
+	path.strokeWidth = 8;
+	path.fillColor = "#319DD4";
 	
 	var y = 100;
 	var x = 120;
