@@ -13,6 +13,9 @@ var furnitureTypes = [
 	new Furniture('table', new Size(100, 75), '#800000'),
 ];
 
+
+idMap = {};
+
 function displayAll() {
 	//displayBackdrop();
 	displaySelectorBar();
@@ -116,6 +119,7 @@ function instantiate(furniture, position) {
 	sprite.data.angle = 0;
 	sprite.data.wall = false;
 	sprite.data.movable = true;
+	idMap[sprite.id] = sprite;
 	
 	var canvas = document.getElementById('garden');
 	var mc = new Hammer.Manager(canvas);
@@ -181,12 +185,25 @@ function onMouseDown(event) {
 		var result = hitResult.item;
 		if (result.data.movable) {
 			if (result.data.wall) {
-				if (connectWalls && (connectWalls[0].id != result.id)) {
+			//	console.log(connectWalls);
+				if (connectWalls && connectWalls.length > 0 && (connectWalls[0].id != result.id)) {
 					connectWalls.push(result);
 					connect(nearest);
 				}
 				else {
-					path = result;
+			
+					var connectedPieces = dfs(result);
+//					result.data.group = connectedPieces;
+//					path = result;
+					console.log('cluster:  .. ' + connectedPieces);
+					if (connectedPieces.length > 1) {
+						var group = new Group(connectedPieces);
+						path = group;
+						path.data.cluster = true;
+					}
+					else {
+						path = result;
+					}
 				}
 			}
 			else
@@ -196,7 +213,7 @@ function onMouseDown(event) {
 			}
 		}
 		else if (result.data.connector) {
-	//		disconnect(result);
+			disconnect(result);
 		}
 		else if (result.data.selector) {
 			instantiate(result.data.furniture, result.data.position);
@@ -222,6 +239,7 @@ function onMouseDown(event) {
 				line.strokeWidth = 8;
 				line.add(start);
 				line.selectable = true;
+				idMap[line.id] = line;
 			
 				path = null;
 			}
@@ -237,6 +255,7 @@ function connect(pt) {
 	connector.data.connector = true;
 	connector.fillColor = "blue";
 	wallGraph[connector.id] = {};
+	idMap[connector.id] = connector;
 	
 	for (var i = 0; i < connectWalls.length; ++i) {
 		var x = connectWalls[i];
@@ -252,21 +271,20 @@ function connect(pt) {
 
 function disconnect(connector) {
 	var walls = [];
-	console.log(wallGraph[connector.id]);
 	for (var i in wallGraph[connector.id]) {
-		alert(i);
 		if (wallGraph[connector.id].hasOwnProperty(i)) {
-			var wall = project.getItems({id: i});
-			console.log(wall);
+			var wall = idMap[i];
+		//	console.log(wall);
 			walls.push(wall);
 		}
 	}
-	console.log(walls);
+//	console.log(walls);
 	for (var i = 0; i < walls.length; i++) {
 		var x = walls[i];
 		delete wallGraph[x.id][connector.id];
-		delete wallGraph[connector.id][x.id];
+		//delete wallGraph[connector.id][x.id];
 	}
+	delete wallGraph[connector.id];
 	//alert('hi');
 	connector.remove();
 	console.log(wallGraph);
@@ -288,6 +306,7 @@ function updateData(object) {
 }
 
 
+
 function onMouseUp(event) {
 	if (path) {
 		if (path.data.wall) {
@@ -301,6 +320,21 @@ function onMouseUp(event) {
 //			var correction = (s1-s2)/(gridInterval)%2;
 		//	alert(correction);
 //			path.position -= correction*gridInterval/2;
+		}
+		else if (path.data.cluster) {
+			var child = null;
+			for (var i = 0; i < path.children.length; i++) {
+				child = path.children[i];
+				if (child.data.connector) {
+					break;
+				}
+			}
+			console.log('c' + child);
+			var childPoint = child.position;
+			console.log(childPoint);
+			var adjust = snap(childPoint) - childPoint;
+			path.position += adjust;
+			path.remove();
 		}
 		else {
 
@@ -334,9 +368,47 @@ function onMouseUp(event) {
 //			line.add(snap(event.point));
 }
 
+function dfs(root) {
+	var visited = [];
+	var stack = [root.id.toString()];
+	while (stack.length > 0) {
+		var node = stack.pop(0);
+		visited.push(node);
+		for (var next in wallGraph[node]) {
+			if (wallGraph[node].hasOwnProperty(next)) {
+				if ($.inArray(next, visited) == -1) {
+					stack.push(next);
+				}
+			}
+		}
+	}
+	console.log(visited);
+	var ret = [];
+	for (var i = 0; i < visited.length; i++) {
+		ret.push(idMap[visited[i]]);
+	}
+	return ret;
+}
+
 function onMouseDrag(event) {
 	if (path) {
-		path.position += event.delta;
+		if (path.data.wall || path.data.cluster) {
+			path.position += event.delta;
+		//	var components = dfs(path);
+			//console.log(components);
+			
+	//		var group = new Group(path.data.group);
+	//		group.position += event.delta;
+		//	console.log(group);
+		/*	for (var i = 0; i < group.length; ++i) {
+				var piece = group[i];
+				piece.position += event.delta;
+			
+			}
+			*/
+			//path.position += event.delta;
+			
+		}
 	}
 	else if (line) {
 		if (gardenBounds.contains(event.point)) {
