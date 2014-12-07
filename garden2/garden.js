@@ -138,7 +138,8 @@ function instantiate(furniture, position) {
 	mc.add(rotate);
 
 	mc.on("rotate", handleRotate);
-
+	
+	return sprite;
 }
 
 function handleRotate(event) {
@@ -244,7 +245,9 @@ function onMouseDown(event) {
 			disconnect(result);
 		}
 		else if (result.data.selector) {
-			instantiate(result.data.furniture, result.data.position);
+			var sprite = instantiate(result.data.furniture, result.data.position);
+			path = sprite;
+			current = path;
 		}
 		else if (result.data.garden) {
 			//line = new Path.Line(event.point, event.point);
