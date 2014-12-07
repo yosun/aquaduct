@@ -320,6 +320,7 @@ function disconnect(connector) {
 function updateData(object) {
 	var url = "http://localhost/bss/aquaduct/server.dump.php";
 	object.data.x = -object.data.x;
+	object.data.dx = -object.data.dx;
 	var data = object.data;
 	//data['x'] = object.position.x;
 //	data['y'] = object.position.y;
