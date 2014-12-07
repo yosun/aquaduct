@@ -155,6 +155,7 @@ current = null;
 wallGraph = {};
 gridpointRadius = 15;
 connectWalls = null;
+connect
 function onMouseDown(event) {
 	connectWalls = [];
 	start = path = line = null;
@@ -196,7 +197,7 @@ function onMouseDown(event) {
 //					result.data.group = connectedPieces;
 //					path = result;
 					console.log('cluster:  .. ' + connectedPieces);
-					if (connectedPieces.length > 1) {
+			  	  	if (connectedPieces.length > 1) {
 						var group = new Group(connectedPieces);
 						path = group;
 						path.data.cluster = true;
@@ -299,9 +300,12 @@ function updateData(object) {
 //var data = "";
 //	var data = 
 //alert(JSON.stringify(data));
+	var jsondata = {
+		jsondump: JSON.stringify(data)
+	};
 	var func = function(result) {console.log(result);};
 	console.log(data);
-	$.post(url, data, func);
+	$.post(url, jsondata, func);
 
 }
 
