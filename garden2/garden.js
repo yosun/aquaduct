@@ -148,40 +148,129 @@ function snap(point) {
 
 current = null;
 
+wallGraph = {};
+gridpointRadius = 15;
+connectWalls = null;
 function onMouseDown(event) {
+	connectWalls = [];
 	start = path = line = null;
+	nearest = snap(event.point);
+	connector = false;
+	if (nearest.isClose(event.point, gridpointRadius) && gardenBounds.contains(event.point)) {
+	
+		var items = project.getItems({
+			class: Path
+		});
+		
+		for (var i = 0; i < items.length; ++i) {
+			var item = items[i];
+			if (item.data.wall) {	
+				if (nearest.equals(item.firstSegment.point) ||
+					nearest.equals(item.lastSegment.point)) {
+					//item.strokeColor = "red";
+					connectWalls.push(item);
+				}
+				
+			}
+			
+		}
+	}
+	
 	var hitResult = project.hitTest(event.point);
 	if (hitResult) {
 		var result = hitResult.item;
 		if (result.data.movable) {
-			path = result;
-			current = path;
-			
+			if (result.data.wall) {
+				if (connectWalls && (connectWalls[0].id != result.id)) {
+					connectWalls.push(result);
+					connect(nearest);
+				}
+				else {
+					path = result;
+				}
+			}
+			else
+			{
+				path = result;
+				current = path;
+			}
+		}
+		else if (result.data.connector) {
+	//		disconnect(result);
 		}
 		else if (result.data.selector) {
 			instantiate(result.data.furniture, result.data.position);
 		}
 		else if (result.data.garden) {
 			//line = new Path.Line(event.point, event.point);
-			start = new Segment(snap(event.point));
-	//		line = new Path(new Segment(event.point))
-			line = new Path();
-			line.position = event.point;
+			if (connectWalls && connectWalls.length > 1) {
+				connect(nearest);
+				
+			}
+			else {
+				start = new Segment(snap(event.point));
+	//			line = new Path(new Segment(event.point))
+				line = new Path();
+				line.position = event.point;
 		//	line.fullySelected = true;
 
-			line.data.id = generateID();
-			line.data.type = "wall";	
-			line.data.wall = true;
-			line.data.movable = true;
-			line.strokeColor = 'black';
-			line.strokeWidth = 8;
-			line.add(start);
+				line.data.id = generateID();
+				line.data.type = "wall";	
+				line.data.wall = true;
+				line.data.movable = true;
+				line.strokeColor = 'black';
+				line.strokeWidth = 8;
+				line.add(start);
+				line.selectable = true;
 			
-			path = null;
+				path = null;
+			}
 		}
 	}
 }
 
+
+
+function connect(pt) {
+
+	var connector = new Shape.Circle(pt, 10);
+	connector.data.connector = true;
+	connector.fillColor = "blue";
+	wallGraph[connector.id] = {};
+	
+	for (var i = 0; i < connectWalls.length; ++i) {
+		var x = connectWalls[i];
+		if (wallGraph[x.id] == null) {
+			wallGraph[x.id] = {};
+		}
+		
+		wallGraph[x.id][connector.id] = true;
+		wallGraph[connector.id][x.id] = true;
+	}
+	console.log(wallGraph);
+}
+
+function disconnect(connector) {
+	var walls = [];
+	console.log(wallGraph[connector.id]);
+	for (var i in wallGraph[connector.id]) {
+		alert(i);
+		if (wallGraph[connector.id].hasOwnProperty(i)) {
+			var wall = project.getItems({id: i});
+			console.log(wall);
+			walls.push(wall);
+		}
+	}
+	console.log(walls);
+	for (var i = 0; i < walls.length; i++) {
+		var x = walls[i];
+		delete wallGraph[x.id][connector.id];
+		delete wallGraph[connector.id][x.id];
+	}
+	//alert('hi');
+	connector.remove();
+	console.log(wallGraph);
+}
 
 function updateData(object) {
 	var url = "http://localhost/index.php";
@@ -230,7 +319,13 @@ function onMouseUp(event) {
 		line.data.y = s1.y;
 		line.data.dx = diff.x;
 		line.data.dy = diff.y;
-		updateData(line);
+		if (diff.x != 0 || diff.y != 0) {
+			updateData(line);
+		}
+		else
+		{
+			line.remove();
+		}
 		line = null;
 	}
 //	else if (line) {
