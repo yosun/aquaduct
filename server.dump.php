@@ -9,3 +9,5 @@ $jsondump = $_REQUEST['jsondump'];
 $query = mins('iodump',array('jsondump'),
                        array($jsondump));
 mquery($query);
+
+echo '!';

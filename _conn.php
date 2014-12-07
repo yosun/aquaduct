@@ -1,8 +1,8 @@
 <?php
 
-$u='beaner';
-$p='bean123';
-$db='bean123';
+$u='beanman';
+$p='uVfnKdXRhy6vR7zX';
+$db='beaner';
 
 $conn = @mysql_connect('localhost',$u,$p);
 @mysql_select_db($db);
