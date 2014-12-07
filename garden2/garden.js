@@ -32,27 +32,28 @@ function displayGarden() {
 	var x2 = x1 + width;
 	var y2 = y1 + height;
 	gardenBounds = new Rectangle(new Point(x1, y1), new Size(width, height));
-    var path = new Path.Rectangle(gardenBounds, 6);
-    path.fillColor = '#C08080';
+    var path = new Path.Rectangle(gardenBounds);
+    path.fillColor = '#319DD4';
 	path.strokeColor = 'black';
+	var lineColor = '#CCDAE8';
 	path.data.garden = true;
 	for (var i = x1+gridInterval; i < x2; i += gridInterval) {
 		var gridLine = new Path.Line(new Point(i, y1), new Point(i, y2));
 		gridLine.strokeWidth = 2;
-		gridLine.strokeColor = "#808080";
+		gridLine.strokeColor = lineColor;
 	}
 	for (var i = y1+gridInterval/2; i < y2; i += gridInterval) {
 		var gridLine = new Path.Line(new Point(x1, i), new Point(x2, i));
 		gridLine.strokeWidth = 2;
-		gridLine.strokeColor = "#808080";
+		gridLine.strokeColor = lineColor;
 	}
 }
 
 function displaySelectorBar() {
 	var bounds = new Rectangle(new Point(20, 20), new Size(200, view.viewSize.height - 60));
-	var path = new Path.Rectangle(bounds, 6);
+	var path = new Path.Rectangle(bounds);
 	path.strokeColor = "black";
-	path.fillColor = "#00C0C0";
+	path.fillColor = "#333333";
 	
 	var y = 100;
 	var x = 120;
@@ -65,13 +66,16 @@ function displaySelectorBar() {
 }
 
 function displaySelector(selection, x, y) {
+
 	var circle = new Shape.Circle({
 		center: [x, y],
 		radius: 40,
-		strokeColor: 'black',
-		fillColor: '#C0C0C0'
+//		strokeColor: 'black',
+//		fillColor: '#C0C0C0'
 	});
 	var iconRadius = 20;
+	
+	
 /*
 	var rectangle = new Rectangle(new Point(x-iconRadius, y-iconRadius),
 			new Size(iconRadius*2, iconRadius*2));
@@ -86,6 +90,7 @@ function displaySelector(selection, x, y) {
 	icon.data.furniture = selection;
 	icon.data.position = new Point(x, y);
 	icon.scale(0.2);
+
 	
 	circle.data.selector = true;
 	circle.data.furniture = selection;
