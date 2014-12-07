@@ -260,10 +260,10 @@ function onMouseDown(event) {
 			line.data.movable = true;
 			line.strokeColor = 'black';
 			line.strokeWidth = 8;
-			line.x = start.point.x;
-			line.y = start.point.y;
-			line.dx = 0;
-			line.dy = 0;
+			line.data.x = start.point.x;
+			line.data.y = start.point.y;
+			line.data.dx = 0;
+			line.data.dy = 0;
 			line.add(start);
 			line.selectable = true;
 			idMap[line.id] = line;
