@@ -5,7 +5,7 @@ require_once('_conn.php');
 if(!isset($_REQUEST['lasttime']))die('lasttime');
 $lasttime=$_REQUEST['lasttime'];
 
-$query = 'SELECT * FROM iodump WHERE timestamp>'.$lasttime;
+$query = 'SELECT * FROM iodump WHERE timestamp>\''.$lasttime.'\' ORDER BY timestamp DESC';
 
 mysql_query($query);
 
