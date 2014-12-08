@@ -1,0 +1,148 @@
+Base path: C:/Program Files (x86)/Unity/Editor/Data
+Pipe name: \\.\pipe\UnityShaderCompiler-1-11848
+Cmd: getPlatforms
+Cmd: preprocess
+  insize=1209 outsize=459 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=997 outsize=990 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=997 outsize=843 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=996 outsize=990 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=996 outsize=843 kw= ok=1
+Cmd: preprocess
+  insize=757 outsize=757 ok=1
+Cmd: preprocess
+  insize=1076 outsize=1076 ok=1
+Cmd: preprocess
+  error: 2 plat 12 at (57): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (60): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (63): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (66): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (70): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (141): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (144): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (147): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (150): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (154): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (231): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (234): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (237): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (240): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (244): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (332): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (335): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (338): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (341): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (345): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (460): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (463): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (466): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (469): Can't find include file frag_ao.cginc
+  error: 2 plat 12 at (473): Can't find include file frag_ao.cginc
+  insize=6551 outsize=797 ok=0
+Cmd: preprocess
+  insize=1173 outsize=314 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1164 outsize=1737 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1164 outsize=1396 kw= ok=1
+Cmd: preprocess
+  insize=347969 outsize=347969 ok=1
+Cmd: preprocess
+  insize=366083 outsize=366083 ok=1
+Cmd: preprocess
+  insize=994 outsize=994 ok=1
+Cmd: preprocess
+  insize=474196 outsize=474196 ok=1
+Cmd: preprocess
+  insize=1287 outsize=1287 ok=1
+Cmd: preprocess
+  insize=1147 outsize=1147 ok=1
+Cmd: preprocess
+  insize=1340 outsize=1340 ok=1
+Cmd: preprocess
+  insize=5357 outsize=1803 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3203 outsize=1339 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3203 outsize=1160 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3201 outsize=1339 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3201 outsize=933 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3217 outsize=1753 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3217 outsize=1428 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3209 outsize=1339 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3209 outsize=852 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3209 outsize=1339 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3209 outsize=1160 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3206 outsize=1339 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3206 outsize=933 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3218 outsize=1753 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3218 outsize=1355 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3211 outsize=1339 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3211 outsize=770 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3204 outsize=1339 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3204 outsize=559 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3208 outsize=1339 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3208 outsize=762 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3203 outsize=1339 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3203 outsize=648 kw= ok=1
+Cmd: preprocess
+  insize=539066 outsize=539066 ok=1
+Cmd: preprocess
+  insize=357058 outsize=357058 ok=1
+Cmd: preprocess
+  insize=1418 outsize=1418 ok=1
+Cmd: preprocess
+  insize=483 outsize=483 ok=1
+Cmd: preprocess
+  insize=5633 outsize=759 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4669 outsize=990 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4669 outsize=811 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4674 outsize=2135 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4674 outsize=1835 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4684 outsize=2143 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4684 outsize=2395 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4679 outsize=2143 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4679 outsize=2030 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4685 outsize=1737 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4685 outsize=2355 kw= ok=1
+Cmd: preprocess
+  insize=496638 outsize=496638 ok=1
+Cmd: preprocess
+  insize=522761 outsize=522761 ok=1
+Cmd: preprocess
+  insize=525518 outsize=525518 ok=1
+Cmd: preprocess
+  insize=959 outsize=959 ok=1
